@@ -16,6 +16,12 @@ class BookResource extends JsonResource
     {
         return [
             // @TODO implement
+            'isbn' => $this->isbn,
+            'title' => $this->title,
+            'description' => $this->description,
+            'published_year' => $this->published_year,
+            'authors' => AuthorResource::collection($this->authors),
+            'review' => new BookReviewResource($this->reviews),
         ];
     }
 }

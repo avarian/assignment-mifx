@@ -17,8 +17,8 @@ class BooksController extends Controller
     public function index(Request $request)
     {
         // @TODO implement
-        
-        return BookResource::collection();
+
+        return BookResource::collection(Book::paginate(15));
     }
 
     public function store(PostBookRequest $request)
