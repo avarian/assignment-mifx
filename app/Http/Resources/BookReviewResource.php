@@ -18,6 +18,13 @@ class BookReviewResource extends JsonResource
             // @TODO implement
             'avg' => (int) round($this->avg('review')),
             'count' => (int) $this->count(),
+            "id" => $this->id,
+            "review" => $this->review,
+            "comment" => $this->comment,
+            "user" => [
+                "id" => $this->user->id,
+                "name" => $this->user->name,
+            ],
         ];
     }
 }
