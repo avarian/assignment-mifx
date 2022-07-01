@@ -16,8 +16,8 @@ class BookReviewResource extends JsonResource
     {
         return [
             // @TODO implement
-            'avg' => $this->avg('review'),
-            'count' => $this->count(),
+            'avg' => (int) round($this->avg('review')),
+            'count' => (int) $this->count(),
         ];
     }
 }
