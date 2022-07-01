@@ -17,8 +17,9 @@ class BooksController extends Controller
     public function index(Request $request)
     {
         // @TODO implement
+        $params = $request->except('_token');
 
-        return BookResource::collection(Book::paginate(15));
+        return BookResource::collection(Book::filter($params)->paginate(15));
     }
 
     public function store(PostBookRequest $request)
