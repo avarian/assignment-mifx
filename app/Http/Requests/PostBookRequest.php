@@ -25,7 +25,12 @@ class PostBookRequest extends FormRequest
     {
         // @TODO implement
         return [
-            'isbn' => 'required|string|numeric|unique:books|size:13',
+            'isbn' => ['required','string','numeric','unique:books',
+                        function ($attribute, $value, $fail) {
+                            if (is_string($value) && strlen($value) !== 13) {
+                                $fail("The $attribute must be 13 digits.");
+                            }
+                        },],
             'title' => 'required|string',
             'description' => 'required|string',
             'authors' => 'required|array',

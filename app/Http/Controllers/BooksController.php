@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
 use App\Http\Requests\PostBookRequest;
 use App\Http\Resources\BookResource;
@@ -26,6 +27,15 @@ class BooksController extends Controller
     {
         // @TODO implement
         $book = new Book();
+        $book->isbn = $request->isbn;
+        $book->title = $request->title;
+        $book->description = $request->description;
+        $book->published_year = $request->published_year;
+        $book->save();
+
+        $authors = Author::find($request->authors);
+
+        $book->authors()->attach($authors);
 
         return new BookResource($book);
     }
