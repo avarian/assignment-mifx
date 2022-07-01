@@ -22,7 +22,10 @@ class BookResource extends JsonResource
             'description' => $this->description,
             'published_year' => $this->published_year,
             'authors' => AuthorResource::collection($this->authors),
-            'review' => new BookReviewResource($this->reviews),
+            'review' => [
+                'avg' => (int) round($this->reviews->avg('review')),
+                'count' => (int) $this->reviews->count(),
+            ],
         ];
     }
 }
